@@ -1,8 +1,11 @@
-import './app.css';
+import Layout from '../Layout/Layout';
+import Comment from '../Comment/Comment';
 
 const App = () => {
   return (
-    <div>App</div>
+    <Layout>
+      <Comment/>
+    </Layout>
   )
 }
 
