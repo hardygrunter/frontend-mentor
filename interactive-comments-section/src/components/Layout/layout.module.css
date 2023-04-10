@@ -1,8 +1,14 @@
 .container {
-  max-width: 735px;
+  max-width: 770px;
   display: flex;
   flex-flow: column nowrap;
   gap: 20px;
   margin: 0 auto;
-  padding: 33px 20px;
+  padding: 33px 16px;
+}
+
+@media (min-width: 1440px) {
+  .container {
+    padding: 65px 20px;
+  }
 }
