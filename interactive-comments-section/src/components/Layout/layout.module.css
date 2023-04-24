@@ -1,8 +1,5 @@
 .container {
   max-width: 770px;
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 20px;
   margin: 0 auto;
   padding: 33px 16px;
 }
