@@ -1,0 +1,47 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 17px 16px;
+  border-radius: 5px;
+  background-color: var(--white);
+}
+
+.avatar {
+  position: absolute;
+  bottom: 17px;
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin-right: 15px;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+@media (min-width: 550px) {
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    padding: 24px;
+  }
+
+  .avatar {
+    position: static;
+  }
+
+  .container form {
+    flex-flow: row nowrap;
+    align-items: flex-start;
+  }
+}
