@@ -1,0 +1,35 @@
+.controls {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 17px;
+}
+
+.btn,
+.btnRed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  color: var(--moderate-blue);
+  transition: filter ease 0.1s;
+}
+
+.btnRed {
+  color: var(--soft-red);
+}
+
+.btn:hover,
+.btnRed:hover,
+.btn:focus,
+.btnRed:focus {
+  filter: brightness(1.8);
+}
+
+@media (min-width: 768px) {
+  .controls {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+  }
+}

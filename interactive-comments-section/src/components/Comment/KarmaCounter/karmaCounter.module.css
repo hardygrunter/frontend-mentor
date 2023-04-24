@@ -1,0 +1,43 @@
+.karmaCounter {
+  width: 97px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5px;
+  border-radius: 10px;
+  background-color: var(--very-light-gray);
+}
+
+.up,
+.down {
+  width: 20px;
+  height: 20px;
+}
+
+.up svg > path,
+.down svg > path {
+  transition: all ease 0.2s;
+}
+
+.up:active svg > path,
+.up:focus svg > path,
+.down:focus svg > path,
+.up:hover svg > path,
+.down:hover svg > path {
+  fill: var(--moderate-blue);
+}
+
+.karma {
+  font-weight: 500;
+  color: var(--moderate-blue);
+}
+
+@media (min-width: 768px) {
+  .karmaCounter {
+    width: auto;
+    gap: 15px;
+    flex-direction: column;
+    padding: 8px 10px;
+    margin-right: 25px;
+  }
+}

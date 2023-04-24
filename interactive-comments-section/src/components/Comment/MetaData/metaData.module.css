@@ -1,0 +1,35 @@
+.metaData {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  display: block;
+  border-radius: 50%;
+  background-color: var(--light-gray);
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.username {
+  font-weight: 500;
+  color: var(--dark-blue);
+  transition: color ease 0.2s;
+}
+
+.username:hover,
+.username:focus {
+  color: var(--dark-blue-gray);
+}
+
+.createdAt {}
+
+@media (min-width: 768px) {
+  .metaData {
+    gap: 18px;
+  }
+}
