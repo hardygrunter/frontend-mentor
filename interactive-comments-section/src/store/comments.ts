@@ -18,26 +18,39 @@ export class Comments {
   private uniId: number = 20;
 
   rootStore: RootStore;
-  data: TcommentData[] = data.comments;
+  private data: TcommentData[] = data.comments;
+
+  get getData() {
+    return [...this.data];
+  }
 
   addComment = (content: string) => {
     this.addTo(this.data, content);
   };
 
-  addReply = (to: number, content: string) => {
-    const target = this.data.find((comment) => comment.id === to);
-
-    if (target) {
-      this.addTo(target.replies, content);
-    }
+  addReply = (id: number, content: string) => {
+    this.handleById(id, (comment) => {
+      this.addTo(comment.replies, content);
+    });
   };
 
   remove = (id: number) => {
-    this.removeFrom(this.data, id);
+    this.handleById(id, (comment, i, target) => {
+      target.splice(i, 1);
+    });
   };
 
   edit = (id: number, content: string) => {
-    this.editFrom(this.data, id, content);
+    this.handleById(id, (comment) => {
+      comment.content = content;
+      comment.createdAt = Date.now().toString();
+    });
+  };
+
+  changeScore = (id: number, score: number) => {
+    this.handleById(id, (comment) => {
+      comment.score = score;
+    });
   };
 
   private addTo(target: TcommentData[], content: string) {
@@ -53,25 +66,21 @@ export class Comments {
     target.push(comment);
   }
 
-  private removeFrom = (target: TcommentData[], id: number) => {
+  private handleById = (
+    id: number,
+    handler: (
+      comment: TcommentData,
+      idx: number,
+      target: TcommentData[]
+    ) => void,
+    target: TcommentData[] = this.data
+  ) => {
     target.some((comment, i) => {
       if (comment.id === id) {
-        target.splice(i, 1);
+        handler(comment, i, target);
         return true;
       }
-      this.removeFrom(comment.replies, id);
-      return false;
-    });
-  };
-
-  private editFrom = (target: TcommentData[], id: number, content: string) => {
-    target.some((comment, i) => {
-      if (comment.id === id) {
-        comment.content = content;
-        comment.createdAt = Date.now().toString();
-        return true;
-      }
-      this.editFrom(comment.replies, id, content);
+      this.handleById(id, handler, comment.replies);
       return false;
     });
   };
