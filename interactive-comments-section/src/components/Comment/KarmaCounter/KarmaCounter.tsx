@@ -1,16 +1,22 @@
-import React from 'react'
 import styles from './karmaCounter.module.css';
 
 import Icon, { Enames } from '../../Icon/Icon';
 
-export const KarmaCounter = ({ karma }: { karma: number }) => {
+interface IkarmaCounter {
+  score: number;
+  onPlus: () => void;
+  onMinus: () => void;
+}
+
+export const KarmaCounter = ({ score, onPlus, onMinus }: IkarmaCounter) => {
+
   return (
     <div className={styles.karmaCounter}>
-    <button className={styles.up}>
+    <button className={styles.up} onClick={onPlus} >
       <Icon name={Enames.plus} />
     </button>
-    <span className={styles.karma}>{karma}</span>
-    <button className={styles.down}>
+    <span className={styles.karma}>{score}</span>
+    <button className={styles.down} onClick={onMinus} >
       <Icon name={Enames.minus} />
     </button>
   </div>

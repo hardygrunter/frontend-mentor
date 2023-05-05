@@ -8,6 +8,6 @@ export const useStore = <K extends keyof RootStore>(name: K) => {
   if (store) {
     return store[name];
   } else {
-    throw new Error('Store not found');
+    throw new Error("Store not found");
   }
 };

@@ -1,0 +1,78 @@
+.container {
+  max-width: 380px;
+  padding: 15px;
+}
+.heading {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  margin-bottom: 15px;
+  color: var(--dark-blue);
+}
+.text {
+  line-height: 1.5rem;
+  margin-bottom: 17px;
+}
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn {
+  flex: 1 1 50%;
+  padding: 15px 5px;
+  color: var(--white);
+  border-radius: 10px;
+  background-color: var(--gray-blue);
+  text-transform: uppercase;
+}
+
+.btnDelete {
+  flex: 1 1 50%;
+  padding: 15px 5px;
+  color: var(--white);
+  border-radius: 10px;
+  background-color: var(--soft-red);
+  text-transform: uppercase;
+}
+
+.btn,
+.btnDelete {
+  transition: background-color 0.2s ease;
+}
+
+.btn:active,
+.btnDelete:active {
+  transform: scale(0.99);
+}
+
+.btn:focus,
+.btn:hover {
+  background-color: var(--dark-blue);
+}
+
+.btnDelete:focus,
+.btnDelete:hover {
+  background-color: var(--red);
+}
+
+@media (min-width: 540px) {
+  .container {
+    padding: 22px;
+  }
+
+  .heading {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .text {
+    margin-bottom: 20px;
+  }
+
+  .controls {
+    gap: 15px;
+  }
+}

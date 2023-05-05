@@ -26,10 +26,10 @@
   color: var(--dark-blue-gray);
 }
 
-.createdAt {}
-
 @media (min-width: 768px) {
   .metaData {
     gap: 18px;
+    flex-wrap: wrap;
+    margin-right: 144px;
   }
 }

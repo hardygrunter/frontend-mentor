@@ -1,37 +1,65 @@
 import { useState } from "react";
 import { useStore } from "./useStore";
+import { enumKeys } from "../utils/enumKeys";
 
-export type Taction = "reply" | "edit" | "delete";
+export enum Eaction {
+  delete = "delete",
+  edit = "edit",
+  reply = "reply",
+  upVote = "upVote",
+  downVote = "downVote",
+}
+
+export type Tactions = {
+  [K in Eaction]: () => void;
+};
+
+const NOOP = () => {};
 
 export const useAction = (id: number) => {
-  const { addReply, edit, remove } = useStore("comments");
-  const [action, setAction] = useState<Taction | "">();
+  const { addReply, edit, remove, changeScore } = useStore("comments");
+  const [action, setAction] = useState<Eaction>();
 
-  const setActionName = (name: Taction) => {
-    setAction(name);
+  const actions: Tactions = {
+    delete: NOOP,
+    edit: NOOP,
+    reply: NOOP,
+    upVote: NOOP,
+    downVote: NOOP,
   };
 
-  const onAction = (content: string) => {
+  for (const act of enumKeys(Eaction)) {
+    actions[act] = () => {
+      setAction(Eaction[act as keyof typeof Eaction]);
+    };
+  }
 
+  const onAction = (content: any) => {
     switch (action) {
-      case "reply":
+      case Eaction.reply:
         addReply(id, content);
         break;
-      case "edit":
+      case Eaction.edit:
         edit(id, content);
         break;
-      case "delete":        
+      case Eaction.delete:
         remove(id);
+        break;
+      case Eaction.upVote:
+        changeScore(id, content);
+        break;
+      case Eaction.downVote:
+        changeScore(id, content);
         break;
       default:
         throw new Error(`There is no handler for ${action} action`);
     }
-    setAction("");
+    setAction(undefined);
   };
 
   return {
     action,
-    setActionName,
+    actions,
     onAction,
   };
 };
